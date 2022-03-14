@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { tap } from 'rxjs';
 import { Book } from '../model/book';
+import { BookApiService } from '../shared/book-api.service';
 
 @Component({
   selector: 'app-book-list',
@@ -7,26 +9,23 @@ import { Book } from '../model/book';
   styleUrls: ['./book-list.component.scss'],
 })
 export class BookListComponent implements OnInit {
-  books: Book[] = [
-    {
-      title: 'How to win friends',
-      author: 'Dale Carnegie',
-      abstract: 'How to Win Friends and Influence ...',
-    },
-    {
-      title: 'The Willpower Instinct: How Self-Control Works ...',
-      author: 'Kelly McGonigal',
-      abstract: 'Based on Stanford University ...',
-    },
-    {
-      author: 'Simon Sinek',
-      title: 'Start with WHY',
-      abstract: "START WITH WHY shows that the leaders who've ...",
-    },
-  ];
+  books!: Book[];
 
-  constructor() {}
+  constructor(private readonly bookApi: BookApiService) {}
 
   // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.bookApi
+      .getAll()
+      .pipe(
+        tap((books) => {
+          // Effect / Side Effect
+          console.log(books);
+        })
+      )
+      .subscribe({
+        next: (value) => (this.books = value),
+        complete: () => console.log('fertig'),
+      });
+  }
 }
