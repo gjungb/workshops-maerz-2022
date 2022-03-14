@@ -3,11 +3,13 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "concurrently npm:start:api npm:start:ui",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "start:api": "bookmonkey-api",
+    "start:ui": "ng serve"
   },
   "private": true,
   "dependencies": {
@@ -36,6 +38,8 @@
     "@types/node": "16.11.26",
     "@typescript-eslint/eslint-plugin": "5.14.0",
     "@typescript-eslint/parser": "5.14.0",
+    "bookmonkey-api": "^3.0.3",
+    "concurrently": "^7.0.0",
     "eslint": "8.11.0",
     "jasmine-core": "4.0.1",
     "karma": "6.3.17",
