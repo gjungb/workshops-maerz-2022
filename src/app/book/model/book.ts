@@ -3,6 +3,10 @@
  */
 export interface Book {
     /**
+     * @link {https://de.wikipedia.org/wiki/Internationale_Standardbuchnummer}
+     */
+    isbn: string;
+    /**
      * @description The title of the book
      */
     title: string;

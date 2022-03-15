@@ -4,8 +4,12 @@
 
 <h3 [ngStyle]="customStyle">{{ content?.author }}</h3>
 
+<p>{{ content?.isbn | appIsbn }}</p>
+
 <button type="button" (click)="handleDetailClick($event)">Details</button>
 
 <p>
   {{ content?.abstract }}
 </p>
+
+<pre><code>{{ content | json }}</code></pre>
