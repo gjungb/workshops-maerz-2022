@@ -1,0 +1,34 @@
+<p>book-edit works!</p>
+
+<form #myForm="ngForm" (ngSubmit)="updateBook(myForm.value)">
+  <div>
+    <label>
+      <input
+        type="text"
+        title="isbn"
+        name="isbn"
+        [ngModel]="book.isbn | appIsbn"
+        readonly
+      />
+    </label>
+  </div>
+  <div>
+    <label>
+      <input
+        type="text"
+        title="title"
+        name="title"
+        [(ngModel)]="book.title"
+        required
+        minlength="2"
+        #myTitle="ngModel"
+      />
+    </label>
+    <pre><code>{{ myTitle.errors | json }}</code></pre>
+  </div>
+  <div>
+    <button type="submit" [disabled]="myForm.invalid">Abschicken</button>
+  </div>
+</form>
+
+<pre><code>{{ book | json }}</code></pre>

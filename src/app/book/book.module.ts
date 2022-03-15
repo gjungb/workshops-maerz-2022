@@ -1,22 +1,19 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BookCardComponent } from './book-card/book-card.component';
+import { BookEditComponent } from './book-edit/book-edit.component';
 import { BookListComponent } from './book-list/book-list.component';
 import { AppIsbnPipe } from './shared/app-isbn.pipe';
-
-
 
 @NgModule({
   declarations: [
     BookCardComponent,
     BookListComponent,
-    AppIsbnPipe
+    AppIsbnPipe,
+    BookEditComponent,
   ],
-  imports: [
-    CommonModule
-  ],
-  exports: [
-    BookListComponent
-  ]
+  imports: [CommonModule, FormsModule],
+  exports: [BookListComponent, BookEditComponent],
 })
-export class BookModule { }
+export class BookModule {}
