@@ -7,8 +7,6 @@ import { Book } from '../model/book';
   providedIn: 'root',
 })
 export class BookApiService {
-  
-
   constructor(private readonly http: HttpClient) {}
 
   // asynchronous
@@ -17,5 +15,9 @@ export class BookApiService {
     return this.http
       .get<Book[]>('http://localhost:4730/books')
       .pipe(delay(5_000));
+  }
+
+  getBookByIsbn(isbn: string): Observable<Book> {
+    return this.http.get<Book>(`http://localhost:4730/books/${isbn}`);
   }
 }

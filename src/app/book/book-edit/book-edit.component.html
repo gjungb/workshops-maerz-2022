@@ -1,5 +1,16 @@
 <p>book-edit works!</p>
 
+<!-- Reactive -->
+<form [formGroup]="form">
+  <label>
+    <input type="text" title="isbn" formControlName="isbn" />
+  </label>
+  <label>
+    <input type="text" title="title" formControlName="title" />
+  </label>
+</form>
+
+<!-- Template driven -->
 <form #myForm="ngForm" (ngSubmit)="updateBook(myForm.value)">
   <div>
     <label>
@@ -19,6 +30,7 @@
         title="title"
         name="title"
         [(ngModel)]="book.title"
+        [ngModelOptions]="{ updateOn: 'blur' }"
         required
         minlength="2"
         #myTitle="ngModel"

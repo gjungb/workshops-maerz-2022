@@ -1,0 +1,5 @@
+<p>book-detail works!</p>
+
+<div *ngIf="book$ | async as book">
+  <app-book-card [myBook]="book"></app-book-card>
+</div>

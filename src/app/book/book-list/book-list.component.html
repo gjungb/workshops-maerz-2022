@@ -2,6 +2,7 @@
 
 <ol *ngIf="books$ | async as things; else loader">
     <li *ngFor="let book of things">
+        <a [routerLink]=" [book.isbn] ">Details</a>
         <app-book-card [myBook]="book" [isFunky]="true"></app-book-card>
     </li>
 </ol>
